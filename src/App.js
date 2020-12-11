@@ -35,10 +35,9 @@ export default class App extends React.Component {
         const paper = {
             textAlign: 'center',
         }
-        const button = {
+        const commandButton = {
             minWidth: 200,
         }
-
         const defaultOptions = {
             loop: 0.5,
             autoplay: true,
@@ -64,16 +63,16 @@ export default class App extends React.Component {
                                         </Card>
                                     </Grid>
                                     <Grid item xs={12}>
-                                        <form noValidate autoComplete="off" onSubmit={this.handleCheck}>
-                                            <Grid container spacing={7}>
-                                                <Grid item xs={6}>
-                                                    <TextField id="response" label={labels.response} variant="filled" />
+                                            <form noValidate autoComplete="off" onSubmit={this.handleCheck}>
+                                                <Grid container xs={12} spacing={0}>
+                                                    <Grid item xs={6}>
+                                                        <TextField id="response" fullWidth={true} label={labels.response} variant="filled" />
+                                                    </Grid>
+                                                    <Grid item xs={6}>
+                                                        <Button style={{height: '100%'}} type="submit" fullWidth={true} >{labels.checkResponse}</Button>
+                                                    </Grid>
                                                 </Grid>
-                                                <Grid item xs={6}>
-                                                    <Button type="submit">{labels.checkResponse}</Button>
-                                                </Grid>
-                                            </Grid>
-                                        </form>
+                                            </form>
                                     </Grid>
                                 </Grid>
                             </Paper>
@@ -88,7 +87,7 @@ export default class App extends React.Component {
                                                         eventName: "complete",
                                                         callback: () => {
                                                             this.setState({isStopped: true});
-                                                            setTimeout(() => this.setState({isStopped:false}), 1000)
+                                                            setTimeout(() => this.setState({isStopped:false}), 10000)
                                                         }
                                                     }]}
                                                 height={400}
@@ -100,7 +99,7 @@ export default class App extends React.Component {
                                     <Grid container item xs={12} justify={'center'}>
                                         <Box width={300}>
                                             <Grid container justify={'center'}>
-                                                <Button classes={button} onClick={() => this.setState({
+                                                <Button classes={commandButton} onClick={() => this.setState({
                                                     isPaused: !this.state.isPaused,
                                                     isFlirting: !this.state.isFlirting
                                                 })}>
