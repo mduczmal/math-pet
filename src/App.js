@@ -7,18 +7,42 @@ import {
 } from "@material-ui/core";
 import {Question} from "./Question";
 import Pancake from "./Pancake";
+import Confused from "./Confused";
 
 export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {isStopped: false, isPaused: false, isFlirting: true, equation: equation()};
+        this.state = {isStopped: false, isPaused: false, isFlirting: true, dog: 'default', equation: equation()};
         this.handleCheck = this.handleCheck.bind(this);
+        this.handleFailure = this.handleFailure.bind(this);
+        this.handleSuccess = this.handleSuccess.bind(this);
+        this.getDog = this.getDog.bind(this);
+    }
+    handleSuccess() {
+        this.setState({dog : 'default'})
+    }
+    handleFailure() {
+        this.setState({dog : 'confused'})
     }
     handleCheck(event) {
-        event.preventDefault()
-        console.log("submitted:")
-        console.log(event.target.value)
+        event.preventDefault();
+        if (parseInt(event.target[0].value) === this.state.equation.solution) {
+            this.handleSuccess();
+        } else {
+            this.handleFailure();
+        }
+    }
+
+    getDog() {
+        switch (this.state.dog) {
+            case 'default':
+                return <Pancake/>;
+            case 'confused':
+                return <Confused/>;
+            default:
+                return <Pancake/>;
+        }
     }
 
     render() {
@@ -41,7 +65,7 @@ export default class App extends React.Component {
                             <Question labels={labels} eq={this.state.equation} check={this.handleCheck}/>
                         </Grid>
                         <Grid item xs={6}>
-                            <Pancake labels={labels}/>
+                            {React.cloneElement(this.getDog(), {labels: labels})}
                         </Grid>
                     </Grid>
                 </Box>
