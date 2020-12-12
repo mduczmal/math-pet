@@ -8,17 +8,17 @@ import {
     TextField,
     Card,
     CardContent,
-    CardHeader,
     Grid,
     Container,
     Box,
+    Typography
 } from "@material-ui/core";
 
 export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {isStopped: false, isPaused: false, isFlirting: true, question: equation().equation};
+        this.state = {isStopped: false, isPaused: false, isFlirting: true, equation: equation()};
         this.handleCheck = this.handleCheck.bind(this);
     }
     handleCheck(event) {
@@ -31,13 +31,13 @@ export default class App extends React.Component {
             startFlirting: "Zacznij merdać!",
             response: "Odpowiedź",
             checkResponse: "Sprawdź!",
-            questionHeader: "Pytanie:"
+            question: {
+                header: "Ile wynosi ",
+                footer: "?"
+            }
         }
         const paper = {
             textAlign: 'center',
-        }
-        const commandButton = {
-            minWidth: 200,
         }
         const defaultOptions = {
             loop: 0.5,
@@ -57,9 +57,19 @@ export default class App extends React.Component {
                                 <Grid container alignItems={'center'}>
                                     <Grid item xs={12}>
                                         <Card>
-                                            <CardHeader title={labels.questionHeader}/>
                                             <CardContent>
-                                                {this.state.question}
+                                                <Box mb={2}>
+                                                    <Typography variant="h5" component="h1">
+                                                        <Box display={'inline'}>{labels.question.header}</Box>
+                                                        <Box display={'inline'} fontStyle={'oblique'}>{'x'}</Box>
+                                                        <Box display={'inline'}>{labels.question.footer}</Box>
+                                                    </Typography>
+                                                </Box>
+                                                <Typography variant="h3" component="body1" display={'inline'}>
+                                                    <Box display={'inline'}>{this.state.equation.header}</Box>
+                                                    <Box display={'inline'} fontStyle={'oblique'}>{'x'}</Box>
+                                                    <Box display={'inline'}> {this.state.equation.footer} </Box>
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </Grid>
@@ -98,7 +108,7 @@ export default class App extends React.Component {
                                     <Grid container item xs={12} justify={'center'}>
                                         <Box width={300}>
                                             <Grid container justify={'center'}>
-                                                <Button classes={commandButton} onClick={() => this.setState({
+                                                <Button onClick={() => this.setState({
                                                     isPaused: !this.state.isPaused,
                                                     isFlirting: !this.state.isFlirting
                                                 })}>
