@@ -1,7 +1,8 @@
 import React from "react";
-import {Grid, Paper} from "@material-ui/core";
+import {Box, Grid, Paper, Typography} from "@material-ui/core";
 import Lottie from "react-lottie";
 import * as animationData from "./smiling-dog.json";
+import {FailureMessage} from "./reaction";
 
 export default class Confused extends React.Component {
     constructor(props) {
@@ -19,6 +20,17 @@ export default class Confused extends React.Component {
         };
         return <Paper>
             <Grid container alignItems={'center'}>
+                <Grid container item xs={12} justify={'center'}>
+                    <FailureMessage elevation={0}>
+                        <Grid container justify={'center'}>
+                            <Box py={5}>
+                                <Typography variant={'h3'}>
+                                    {this.props.labels.wrong}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                    </FailureMessage>
+                </Grid>
                 <Grid item xs={12}>
                     <Lottie options={defaultOptions}
                             isClickToPauseDisabled={true}

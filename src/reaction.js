@@ -7,3 +7,9 @@ export const SuccessMessage = styled(Paper)({
     width: '100%',
 });
 
+export const FailureMessage = styled(Paper)({
+    background: 'linear-gradient(45deg, #22FFDD 30%,#AACCFF 90%)',
+    color: 'white',
+    width: '100%',
+});
+
