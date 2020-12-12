@@ -90,8 +90,6 @@ export default class App extends React.Component {
                                                             setTimeout(() => this.setState({isStopped:false}), 10000)
                                                         }
                                                     }]}
-                                                height={400}
-                                                width={400}
                                                 isClickToPauseDisabled={true}
                                                 isStopped={this.state.isStopped}
                                                 isPaused={this.state.isPaused}/>
