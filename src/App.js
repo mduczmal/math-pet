@@ -66,7 +66,7 @@ export default class App extends React.Component {
                 footer: "?"
             },
             correct: "TAAAK! Jesteś Miszczem!",
-            wrong: ""
+            wrong: "Coś chyba źle. Nie mam pojęcia co."
         }
 
         return <div>
