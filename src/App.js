@@ -8,6 +8,7 @@ import {
 import {Question} from "./Question";
 import Pancake from "./Pancake";
 import Confused from "./Confused";
+import Proud from "./Proud";
 
 export default class App extends React.Component {
 
@@ -20,24 +21,33 @@ export default class App extends React.Component {
         this.getDog = this.getDog.bind(this);
     }
     handleSuccess() {
-        this.setState({dog : 'default'})
+        this.setState({dog : 'proud'})
     }
     handleFailure() {
         this.setState({dog : 'confused'})
     }
     handleCheck(event) {
         event.preventDefault();
-        if (parseInt(event.target[0].value) === this.state.equation.solution) {
+        const success = parseInt(event.target[0].value) === this.state.equation.solution;
+        if (success) {
             this.handleSuccess();
         } else {
             this.handleFailure();
         }
+        setTimeout(() => {
+            this.setState({dog: 'default'})
+            if (success) {
+                this.setState({equation: equation()})
+            }
+        }, 5000)
     }
 
     getDog() {
         switch (this.state.dog) {
             case 'default':
                 return <Pancake/>;
+            case 'proud':
+                return <Proud/>;
             case 'confused':
                 return <Confused/>;
             default:
@@ -54,7 +64,9 @@ export default class App extends React.Component {
             question: {
                 header: "Ile wynosi ",
                 footer: "?"
-            }
+            },
+            correct: "TAAAK! Jesteś Miszczem!",
+            wrong: ""
         }
 
         return <div>
