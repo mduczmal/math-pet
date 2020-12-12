@@ -1,6 +1,7 @@
 import React from 'react'
 import Lottie from 'react-lottie';
 import * as animationData from './happy-dog.json'
+import equation from './equation'
 import {
     Button,
     Paper,
@@ -17,7 +18,7 @@ export default class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {isStopped: false, isPaused: false, isFlirting: true, question: "2+2=?"};
+        this.state = {isStopped: false, isPaused: false, isFlirting: true, question: equation().equation};
         this.handleCheck = this.handleCheck.bind(this);
     }
     handleCheck(event) {
