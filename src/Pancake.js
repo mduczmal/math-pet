@@ -6,7 +6,7 @@ import * as animationData from "./happy-dog.json";
 export default class Pancake extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {isStopped: false, isPaused: false, isFlirting: true};
+        this.state = {isStopped: false, isPaused: false, isWagging: true};
     }
     render() {
         const defaultOptions = {
@@ -36,9 +36,9 @@ export default class Pancake extends React.Component {
                 <Grid container item xs={12} justify={'center'}>
                     <Button onClick={() => this.setState({
                         isPaused: !this.state.isPaused,
-                        isFlirting: !this.state.isFlirting
+                        isWagging: !this.state.isWagging
                     })}>
-                        {this.state.isFlirting? this.props.labels.stopFlirting : this.props.labels.startFlirting}
+                        {this.state.isWagging? this.props.labels.stopWagging : this.props.labels.startWagging}
                     </Button>
                 </Grid>
             </Grid>
